@@ -1,0 +1,28 @@
+name: Build and test
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi python3-tk
+          python -m pip install -r client/requirements.txt
+      - name: Test compass and protocol
+        run: |
+          mkdir -p build
+          gcc -std=c11 -Wall -Wextra -Werror -IPVS4/Core/Inc tests/test_logic.c PVS4/Core/Src/compass_logic.c -lm -o build/test_logic
+          ./build/test_logic
+          python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Build STM32F427 firmware
+        run: python tools/build.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PVS4-firmware
+          path: |
+            build/PVS4.elf
+            build/PVS4.bin
+            build/PVS4.hex
+            build/PVS4.map

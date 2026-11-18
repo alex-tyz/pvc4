@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+build/
+Debug/
+Release/
+.metadata/
+client/logs/
+*.elf
+*.bin
+*.hex
+*.map
+.DS_Store
