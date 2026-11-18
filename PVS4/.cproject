@@ -63,7 +63,7 @@
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)" />
 									<additionalInput kind="additionalinput" paths="$(LIBS)" />
 								</inputType>
-								<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libs.pvs4.3" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libs" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+								<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries.pvs4.3" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
 									<listOptionValue builtIn="false" value="m" />
 								</option>
 							</tool>
@@ -144,7 +144,7 @@
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)" />
 									<additionalInput kind="additionalinput" paths="$(LIBS)" />
 								</inputType>
-								<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libs.pvs4.16" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libs" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
+								<option id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries.pvs4.16" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries" valueType="libs" IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false">
 									<listOptionValue builtIn="false" value="m" />
 								</option>
 							</tool>

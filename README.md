@@ -61,6 +61,15 @@ I2C1 PB8/PB9 400 кГц; USART6 PC6/PC7 38400 8N1. SysTick — FreeRTOS, TIM6 �
 его каталог указан в **Properties → Resource → Location**. После обновления выполнить **Refresh**, при необходимости **Close Project → Open Project**.
 Регрессионные тесты `test_project_metadata.py` теперь проверяют наличие этой инструкции и обеих конфигураций сборки.
 
+### Если линковщик сообщает `error: m: No such file or directory`
+
+В первоначальных настройках проекта была использована неверная ссылка на тип опции математической библиотеки.
+Исправлено для Debug и Release. Если проект уже импортирован, закрыть IDE, открыть его `.cproject` и заменить
+все вхождения `com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libs` на
+`com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries`.
+Снова открыть IDE, выполнить **Project → Clean**, затем **Build Project**.
+В команде линковки библиотека должна передаваться как `-lm`; отдельного аргумента `m` быть не должно.
+
 ## Сборка без IDE
 
 Нужны Python 3 и Arm GNU Toolchain (`arm-none-eabi-gcc`, `objcopy`, `size`) в PATH:

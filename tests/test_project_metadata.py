@@ -41,6 +41,20 @@ class CubeIdeProjectMetadata(unittest.TestCase):
             self.assertIn('../Middlewares/FreeRTOS/portable/GCC/ARM_CM4F', paths)
         self.assertEqual(set(names), {'Debug', 'Release'})
 
+    def test_math_library_uses_cubeide_library_option(self):
+        root = ET.parse(PROJECT / '.cproject').getroot()
+        linkers = root.findall(".//tool[@superClass='com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker']")
+        self.assertEqual(len(linkers), 2)
+        for linker in linkers:
+            for option in linker.findall('option'):
+                values = [e.get('value') for e in option.findall('listOptionValue')]
+                if 'm' in values:
+                    self.assertEqual(option.get('superClass'),
+                        'com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries')
+            libraries = linker.find("option[@superClass='com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.linker.option.libraries']")
+            self.assertIsNotNone(libraries)
+            self.assertIn('m', [e.get('value') for e in libraries.findall('listOptionValue')])
+
 
 if __name__ == '__main__':
     unittest.main()
