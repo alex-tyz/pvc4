@@ -45,6 +45,22 @@
 Параметры платы: HSE 25 МГц, SYSCLK/HCLK 180 МГц, APB1 45 МГц, APB2 90 МГц;
 I2C1 PB8/PB9 400 кГц; USART6 PC6/PC7 38400 8N1. SysTick — FreeRTOS, TIM6 — HAL.
 
+### Если Set Active / Manage неактивны и показано `This project is not a CDT project`
+
+В первой опубликованной версии проекта в `.cproject` была утрачена служебная строка CDT `<?fileVersion 4.0.0?>`.
+Это ошибка метаданных проекта, которая не обнаруживается отдельной кросс-сборкой GCC.
+Обновить проект из репозитория либо закрыть IDE и вставить эту строку между XML-декларацией и `<cproject ...>`:
+
+```xml
+<?xml version='1.0' encoding='UTF-8'?>
+<?fileVersion 4.0.0?>
+<cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+```
+
+Сохранить файл и снова открыть STM32CubeIDE. Исправлять нужно `.cproject` именно импортированного проекта;
+его каталог указан в **Properties → Resource → Location**. После обновления выполнить **Refresh**, при необходимости **Close Project → Open Project**.
+Регрессионные тесты `test_project_metadata.py` теперь проверяют наличие этой инструкции и обеих конфигураций сборки.
+
 ## Сборка без IDE
 
 Нужны Python 3 и Arm GNU Toolchain (`arm-none-eabi-gcc`, `objcopy`, `size`) в PATH:
